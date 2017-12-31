@@ -5,7 +5,7 @@ This is a very simple python program to show how to implement content-based reco
 
 To try running this example:
 ```sh
-# install pipenv
+# install pipenv if you don't have it
 pip install pipenv
 
 # install all dependency packages
