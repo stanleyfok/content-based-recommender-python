@@ -22,6 +22,7 @@ tf = TfidfVectorizer(analyzer='word',
 tfidf_matrix = tf.fit_transform(df['title'])
 cosine_similarities = linear_kernel(tfidf_matrix, tfidf_matrix)
 
+data = {}
 for idx, row in enumerate(df.iterrows()):
     similar_indices = cosine_similarities[idx].argsort()[:-100:-1]
     similar_items = [{'id': df.index[i], 'score': cosine_similarities[idx][i]}
@@ -30,6 +31,9 @@ for idx, row in enumerate(df.iterrows()):
     # exclude the first element as it is self
     similar_items = similar_items[1:]
 
-    # print(similar_items)
+    data[df.index[idx]] = similar_items
 
 print("done in %fs" % (time() - t0))
+
+# get similar items for the job with id = "1"
+print(data["1"])
